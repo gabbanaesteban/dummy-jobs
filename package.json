@@ -2,19 +2,20 @@
   "name": "dummy-jobs",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "",
   "scripts": {
     "start": "ts-node index.ts",
-    "dev": "nodemon index.ts",
+    "dev": "nodemon index.ts --require ./node_modules/esm",
     "pretest": "npm run lint && tsc --noEmit",
     "lint": "eslint . --cache --fix --ext .ts,.tsx"
   },
   "keywords": [],
   "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
   "license": "MIT",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
     "joi": "^17.2.1",
@@ -23,6 +24,9 @@
     "ts-node": "^9.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.8",
+    "@types/morgan": "^1.9.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
