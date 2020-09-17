@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "start": "ts-node index.ts",
-    "dev": "nodemon index.ts --require ./node_modules/esm",
+    "dev": "nodemon index.ts",
     "pretest": "npm run lint && tsc --noEmit",
     "lint": "eslint . --cache --fix --ext .ts,.tsx"
   },
@@ -15,7 +15,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
     "joi": "^17.2.1",
