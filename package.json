@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts",
+    "pretest": "npm run lint && tsc --noEmit",
+    "lint": "eslint . --cache --fix --ext .ts,.tsx"
   },
   "keywords": [],
   "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
@@ -17,9 +19,14 @@
     "helmet": "^4.1.1",
     "joi": "^17.2.1",
     "monk": "^7.3.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "ts-node": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^4.0.2"
   }
 }
