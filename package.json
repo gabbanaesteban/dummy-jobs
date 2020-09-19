@@ -8,6 +8,8 @@
     "dev": "nodemon index.ts",
     "pretest": "npm run lint && tsc --noEmit",
     "lint": "eslint . --cache --fix --ext .ts,.tsx"
+    "migrate:up": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down"
   },
   "keywords": [],
   "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
@@ -17,10 +19,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
-    "joi": "^17.2.1",
+    "migrate-mongo": "^8.1.1",
     "monk": "^7.3.2",
-    "morgan": "^1.10.0",
-    "ts-node": "^9.0.0"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.7",
