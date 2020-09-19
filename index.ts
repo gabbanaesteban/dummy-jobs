@@ -6,9 +6,9 @@ import * as cors from 'cors'
 import * as morgan from 'morgan'
 import * as helmet from 'helmet'
 
-dotenv.config()
+import router from './api/routes/router'
 
-// const router = require('./api/routes/index')
+dotenv.config()
 
 const app = express()
 
@@ -17,14 +17,12 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.json({'message': 'hello'})
-})
+app.use(router)
 
-// app.use(router)
 const port = process.env.PORT || 3001
 
 app.listen(port, () => {
+    // eslint-disable-next-line no-undef
     console.log(`Listeting at http://localhost:${port}`)
 })
 
