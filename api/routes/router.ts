@@ -1,10 +1,11 @@
 'use stric'
-const express = require('express')
-const companies = require('./companies.routes')
+
+import * as express from 'express'
+import { router as companiesRoutes } from './companies.routes'
 
 const router = express.Router()
 
-router.use('/companies', companies)
+router.use('/companies', companiesRoutes)
 
 router.get('/', (req, res) => res.send('Dummy Jobs API v1'))
 
@@ -18,4 +19,4 @@ router.get('/health', (req, res) => {
     res.send(JSON.stringify(healthcheck))
 })
 
-module.exports = router;
+export default router

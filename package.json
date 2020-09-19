@@ -6,8 +6,9 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "nodemon index.ts",
+    "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' index.ts",
     "pretest": "npm run lint && tsc --noEmit",
-    "lint": "eslint . --cache --fix --ext .ts,.tsx"
+    "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "migrate:up": "migrate-mongo up",
     "migrate:down": "migrate-mongo down"
   },
@@ -30,7 +31,18 @@
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "npm run lint"
   }
 }
