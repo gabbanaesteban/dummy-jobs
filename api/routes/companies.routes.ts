@@ -1,8 +1,10 @@
-import * as express from 'express'
+'use strict'
+
+import { Router } from 'express'
 import { index } from '../controllers/companies.controller'
 
-const router = express.Router({ mergeParams: true });
+const router = Router({ mergeParams: true });
 
 router.get('/', index)
 
-export { router }
+export default router

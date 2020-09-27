@@ -1,19 +1,21 @@
 'use strict'
 
-import * as dotenv from 'dotenv'
-import * as express from 'express'
-import * as cors from 'cors'
-import * as morgan from 'morgan'
-import * as helmet from 'helmet'
+import { config as configDotenv } from 'dotenv'
+import express from 'express'
+import cors from 'cors'
+import morgan from 'morgan'
+import helmet from 'helmet'
+
+import { connect } from './db/db'
 
 import router from './api/routes/router'
 
-dotenv.config()
+configDotenv()
 
 const app = express()
 
 app.use(helmet())
-app.use(morgan('tiny'))
+app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 
@@ -21,8 +23,9 @@ app.use(router)
 
 const port = process.env.PORT || 3001
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    await connect()
     // eslint-disable-next-line no-undef
-    console.log(`Listeting at http://localhost:${port}`)
+    console.log(`Listening at http://localhost:${port}`)
 })
 

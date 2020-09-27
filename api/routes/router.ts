@@ -1,22 +1,28 @@
-'use stric'
+'use strict'
 
-import * as express from 'express'
-import { router as companiesRoutes } from './companies.routes'
+import { Router, Request, Response } from 'express'
+import companiesRoutes from './companies.routes'
+import authRoutes from './auth.routes'
 
-const router = express.Router()
+const router = Router()
 
+router.use('/', authRoutes)
 router.use('/companies', companiesRoutes)
 
-router.get('/', (req, res) => res.send('Dummy Jobs API v1'))
-
-router.get('/health', (req, res) => {
-    const healthcheck = {
-        uptime: process.uptime(),
-        status: 'Ok',
-        timestamp: Date.now()
-    }
-
-    res.send(JSON.stringify(healthcheck))
+router.use((req: Request, res: Response) => {
+  res.sendStatus(404)
 })
+
+router.use((error: { status?: number, stack: string, message: string }, req: Request, res: Response) => {
+  if (error.status) {
+    res.status(error.status);
+  } else {
+    res.status(500);
+  }
+  res.json({
+    message: error.message,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : error.stack,
+  });
+});
 
 export default router
