@@ -22,7 +22,7 @@ export function verifyToken (token: string) {
   new Promise((resolve, reject) => {
     jwt.verify(token, JWT_SECRET, (err, payload) => {
       if(err) {
-        reject(err)
+        return reject(err)
       }
       resolve(payload)
     })
@@ -33,9 +33,8 @@ function hashPassword(password: string) {
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 8, (err, hash) => {
       if(err) {
-        reject(err)
+        return reject(err)
       }
-
       resolve(hash)
     })
   })
