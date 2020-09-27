@@ -32,8 +32,10 @@
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
+    "jest": "^26.4.2",
     "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
+    "ts-jest": "^26.4.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
@@ -44,5 +46,22 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "npm run lint"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/lib/"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
   }
 }
