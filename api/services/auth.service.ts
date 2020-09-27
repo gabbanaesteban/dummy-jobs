@@ -2,7 +2,11 @@
 
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import { config as configDotenv } from 'dotenv'
+
 import { User } from '../models/user.model'
+
+configDotenv()
 
 const JWT_SECRET = process.env.JWT_SECRET || ''
 const JWT_EXP = process.env.JWT_EXP || ''
