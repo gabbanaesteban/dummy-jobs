@@ -1,30 +1,26 @@
 {
   "name": "dummy-jobs",
-  "version": "1.0.0",
-  "main": "index.js",
-  "description": "",
+  "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts",
-    "dev": "nodemon index.ts",
-    "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' index.ts",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
+    "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' src/index.ts",
     "pretest": "npm run lint && tsc --noEmit",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
-    "migrate:up": "migrate-mongo up",
-    "migrate:down": "migrate-mongo down",
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test": "npm run test:jest --"
   },
-  "keywords": [],
-  "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "helmet": "^4.1.1",
+    "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "mongoose": "^5.10.7",
@@ -36,6 +32,7 @@
     "@types/cors": "^2.8.7",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.8",
+    "@types/http-errors": "^1.8.0",
     "@types/jest": "^26.0.14",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/lodash": "^4.14.161",
@@ -45,7 +42,6 @@
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
-    "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
@@ -53,23 +49,16 @@
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": "npm run lint"
-  },
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/build/"
     ],
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",

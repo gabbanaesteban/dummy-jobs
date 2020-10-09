@@ -6,9 +6,9 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 
-import { connect } from './db/db'
+import { connect } from './utils/db'
 
-import router from './api/routes/router'
+import router from './routes/router'
 
 configDotenv()
 
