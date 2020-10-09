@@ -8,6 +8,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "no-redeclare":"off"
   },
   "globals": {
     "process": "writable"
