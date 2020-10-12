@@ -8,15 +8,15 @@ import * as authService from '../services/auth.service'
 
 const signup = asyncHandler( async (req: Request, res: Response) => {
   const params = req.body
-  const validatedParams = await validateParams(params, signupSchema)
-  const response = await authService.signup(validatedParams)
+  const signupParams = await validateParams(params, signupSchema)
+  const response = await authService.signup(signupParams)
   res.status(201).send(response)
 })
 
 const signin = asyncHandler( async (req: Request, res: Response) => {
   const params = req.body
-  const validatedParams = await validateParams(params, signinSchema)
-  const response = await authService.signin(validatedParams)
+  const signinParams = await validateParams(params, signinSchema)
+  const response = await authService.signin(signinParams)
   res.status(200).send(response)
 })
 

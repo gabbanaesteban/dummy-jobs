@@ -54,7 +54,7 @@ const signin = async (params: any): Promise<{ token: string }> => {
 
 const generateToken = (user: any): string => {
   //@ts-ignore
-  return jwt.sign({ id: user.id }, JWT_SECRET, {
+  return jwt.sign({ _id: user._id }, JWT_SECRET, {
     expiresIn: JWT_EXP
   })
 }

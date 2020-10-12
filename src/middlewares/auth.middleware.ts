@@ -11,14 +11,14 @@ configDotenv()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
-const protect = asyncHandler( async (req: any, res: any, next: any): Promise<void> => {
+const protect = asyncHandler(async (req: any, res: any, next: any): Promise<void> => {
   const token = getTokenFromHeader(req.headers.authorization)
 
   if (!token) {
     throw new createError.Unauthorized('Invalid token')
   }
 
-  const { id: userId } = await verifyToken(token)
+  const { _id: userId } = await verifyToken(token)
 
   const user = await User.findById(userId)
     .select('-password')

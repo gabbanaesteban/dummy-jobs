@@ -10,8 +10,8 @@ const router = Router()
 
 router.use('/', authRoutes)
 
-router.use('/api', protect)
-router.use('/api/companies', companiesRoutes)
+router.use(protect)
+router.use('/companies', companiesRoutes)
 
 router.use(notFound)
 router.use(errorHandler)
