@@ -18,9 +18,14 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
+    },
+    company: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Company',
+      unique: true
     }
   },
   { timestamps: true }
 )
 
-export const User = mongoose.model('user', userSchema)
+export const User = mongoose.model('User', userSchema)

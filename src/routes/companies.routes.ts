@@ -1,10 +1,10 @@
 'use strict'
 
 import { Router } from 'express'
-import { index } from '../controllers/companies.controller'
+import { create } from '../controllers/companies.controller'
 
 const router = Router({ mergeParams: true });
 
-router.get('/', index)
+router.post('/', create)
 
 export default router
