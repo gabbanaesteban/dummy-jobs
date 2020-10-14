@@ -86,13 +86,13 @@ paths:
           description: user not found
 
   /companies:
-    security:
-        - Bearer: []
     post:
       tags:
       - "company"
       summary: "Create a company for the logged user"
       description: ""
+      security:
+        - Bearer: []
       parameters:
       - in: body
         name: body
