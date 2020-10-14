@@ -14,7 +14,7 @@ const create = async (companyParams: any, user: any) => {
   
   const company = await Company.create(companyData)
 
-  await User.findByIdAndUpdate(userId, { company })
+  await User.findByIdAndUpdate(userId, { company }).lean().exec()
   
   return company
 }
