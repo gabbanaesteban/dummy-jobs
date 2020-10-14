@@ -5,14 +5,16 @@ import { User } from '../models/user.model'
 
 //TODO: create interfaces
 const create = async (companyParams: any, user: any) => {
+  const { _id: userId } = user
+  
   const companyData = {
     ...companyParams,
-    owner: user._id
+    owner: userId
   }
   
   const company = await Company.create(companyData)
-  
-  await User.findByIdAndUpdate(user._id, { company })
+
+  await User.findByIdAndUpdate(userId, { company })
   
   return company
 }
