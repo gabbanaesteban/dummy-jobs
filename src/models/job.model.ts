@@ -10,6 +10,11 @@ const jobSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
+    enum: ['Full-time', 'Part-time','Freelance', 'Intership', 'Temporary']
+  },
+  level: {
+    type: String,
+    required: true,
     enum: ['Beginner','Junior','Mid-level','Senior','Lead','Manager']
   },
   description: {
