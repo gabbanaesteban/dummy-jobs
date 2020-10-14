@@ -3,7 +3,7 @@
 import asyncHandler from 'express-async-handler'
 import { config as configDotenv } from 'dotenv'
 import createError from 'http-errors'
-import jwt from 'jsonwebtoken'
+import jwt, { VerifyErrors } from 'jsonwebtoken'
 
 import { User } from '../models/user.model'
 
@@ -18,7 +18,9 @@ const protect = asyncHandler(async (req: any, res: any, next: any): Promise<void
     throw new createError.Unauthorized('Invalid token')
   }
 
-  const { _id: userId } = await verifyToken(token)
+  const { _id: userId } = await verifyToken(token).catch(() => {
+    throw new createError.Unauthorized('Invalid token')
+  })
 
   const user = await User.findById(userId)
     .select('-password')
@@ -43,7 +45,7 @@ const getTokenFromHeader = (header?: string): string | undefined => {
   return token
 }
 
-const verifyToken = async (token: string): Promise<any> => {
+const verifyToken = async (token: string): Promise<any|VerifyErrors> => {
   return new Promise((resolve, reject) => {
     //@ts-ignore
     jwt.verify(token, JWT_SECRET, (err, payload) => {

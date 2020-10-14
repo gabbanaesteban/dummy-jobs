@@ -9,16 +9,13 @@ const notFound = (req: Request, res: Response, next: NextFunction) => {
 }
 
 // eslint-disable-next-line no-unused-vars
-const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  if(err?.statusCode) {
-    res.status(err.statusCode)
-  }else if(res.statusCode === 200) {
-    res.status(500)
-  }
+const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
+  error?.statusCode ? res.status(error.statusCode) : res.status(500)
 
   res.json({
-    message: err.message,
-    stack: process.env.NODE_ENV === 'production' ? null : err.stack
+    message: error.message,
+    fields: error?.fields,
+    stack: process.env.NODE_ENV === 'production' ? null : error.stack
   })
 }
 
