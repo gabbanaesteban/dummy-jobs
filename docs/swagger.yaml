@@ -126,8 +126,34 @@ paths:
           description: invalid token
         404:
           description: user not found
-        
 
+  
+  /jobs:
+    post:
+      tags:
+      - "job"
+      summary: "Create a job for the user company"
+      description: ""
+      security:
+        - Bearer: []
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: "#/definitions/Job"
+      responses:
+        201:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Job"
+        400:
+          description: validation failed
+        401:
+          description: invalid token
+        404:
+          description: user not found
+        
 definitions:
   AuthResponse:
     type: object
@@ -154,3 +180,88 @@ definitions:
       owner:
         type: string
         example: 5f83e7138744167774f120cd
+  
+
+
+
+
+  Job:
+    type: object
+    properties:
+      title:
+        type: string
+        description: Title of the job
+        example: Backend Developer
+        required: true
+      type:
+        type: string
+        enum: [Full-time, Part-time,Freelance, Intership, Temporary]
+        description: Type of the job
+        example: Full-time
+        required: true
+      level:
+        type: string
+        enum: [Beginner,Junior,Mid-level,Senior,Lead,Manager]
+        description: Seniority required for the job
+        example: Full-time
+        required: true
+      description:
+        type: string
+        description: A description for the job. HTML supported.
+        example: <h1>Woww!</h1>
+        required: true
+      application:
+        required: true
+        type: object
+        properties:
+          how_to_apply:
+            type: string
+            description: Steps to apply. HTML supported.
+            example: send us a mail!
+            required: true
+          target_type:
+            type: string
+            example: email
+            enum: [email, ATS]
+            required: true
+          target:
+            type: string
+            example: foo@bar.net
+            required: true
+      compensation:
+        required: true
+        type: object
+        properties:
+          currency:
+            type: string
+            example: USD
+            enum: [USD]
+            required: true
+          min_salary:
+            type: string
+            description: Min salary. Nullable.
+            example: "10000"
+            required: false
+          max_salary:
+            type: string
+            description: Max salary. Nullable.
+            example: null
+            required: false
+      location:
+        required: true
+        type: object
+        properties:
+          can_be_remote:
+            type: boolean
+            description: Whether the job can be remote or not
+            example: true
+            required: true
+          remote_only:
+            type: boolean
+            description: Wheter the job is remote only or not. can_be_remote should be true.
+            example: false
+            required: true
+          address:
+            type: string
+            example: Santo Domingo, Republica Dominicana
+            required: true
