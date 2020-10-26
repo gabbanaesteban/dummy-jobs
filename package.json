@@ -3,7 +3,8 @@
   "author": "Esteban De la Rosa <gabbanaesteban@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/index.js",
     "dev": "nodemon src/index.ts",
     "dev:debug": "nodemon --exec 'node -r ts-node/register --inspect-brk' src/index.ts",
     "pretest": "npm run lint && tsc --noEmit",
