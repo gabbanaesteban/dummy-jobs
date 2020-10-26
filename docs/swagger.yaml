@@ -2,10 +2,10 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: "Dummy Jobs"
+  title: "Dummy Jobs API"
   contact:
     email: "gabbanaesteban@gmail.com"
-host: "dummy-jobs-api.estebandelarosa.dev"
+host: "https://dummy-jobs-api.herokuapp.com"
 basePath: "/"
 schemes:
 - "https"
