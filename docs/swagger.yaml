@@ -5,7 +5,7 @@ info:
   title: "Dummy Jobs API"
   contact:
     email: "gabbanaesteban@gmail.com"
-host: "https://dummy-jobs-api.herokuapp.com"
+host: "dummy-jobs-api.herokuapp.com"
 basePath: "/"
 schemes:
 - "https"
